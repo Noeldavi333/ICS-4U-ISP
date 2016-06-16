@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * this window will appear if the user elects to filter their data by bus route
@@ -37,6 +38,8 @@ public class SetupActivityFilterRoute extends Activity{
         //if the text box is empty
         if (searchParameter.isEmpty()){
             //toast thing
+            Toast.makeText(SetupActivityFilterRoute.this,
+                    "Field Cannot Be Empty!", Toast.LENGTH_LONG).show();
         }
         else{
 

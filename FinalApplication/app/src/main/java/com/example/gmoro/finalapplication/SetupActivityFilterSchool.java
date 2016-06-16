@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * this window will appear if the user elects to filter their data by school name
@@ -36,6 +37,8 @@ public class SetupActivityFilterSchool extends Activity {
 
         if(searchParameter.isEmpty()){
             //toast thing
+            Toast.makeText(SetupActivityFilterSchool.this,
+                    "Field Cannot Be Empty!", Toast.LENGTH_LONG).show();
         }
         else{
             //create intent to move to main activity
