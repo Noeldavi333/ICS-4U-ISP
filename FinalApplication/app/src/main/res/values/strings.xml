@@ -5,7 +5,7 @@
     <string name="setup_intro_two_body_text_strig">Filtering your alerts will allow us to only show you what you need to see. If you want to see everything, click no.</string>
     <string name="setup_no_filter_confirm_body_text_string">You\'re all set to start getting notifications. Remember, you can change this any time from the options menu.</string>
     <string name="setup_filter_select_body_text_string">You have indicated that you wish to tailor your notifications to you. Would you like notifications about your bus route, entire school, or entire school board?</string>
-    <string name="setup_filter_school_body_text_string">Enter ther the name of the school you\'d like updates about. For example, enter \"Governor Simcoe\" if you would like updates about Govenor Simcoe Secondary School.</string>
-    <string name="setup_filter_board_body_text_string">Enter the acrynom for your school board. For example, if you\'d like updates for the District School Board of Niagara, enter \"DSBN\".</string>
-    <string name="setup_filter_confirm_body_text_string">You\'re all set to start getting personalized notifications. Remember, you cahnge this any time from the options menu.</string>
+    <string name="setup_filter_school_body_text_string">Enter the name of the school you\'d like updates about. For example, enter \"Governor Simcoe\" if you would like updates about Governor Simcoe Secondary School.</string>
+    <string name="setup_filter_board_body_text_string">Enter the acronym for your school board. For example, if you\'d like updates for the District School Board of Niagara, enter \"DSBN\".</string>
+    <string name="setup_filter_confirm_body_text_string">You\'re all set to start getting personalized notifications. Remember, you change this any time from the options menu.</string>
 </resources>

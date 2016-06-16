@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@drawable/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SetupActivityFilterRoute">
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,4 +49,15 @@
         android:textStyle="bold|italic"
         android:nestedScrollingEnabled="true"
         android:layout_margin="20dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        android:id="@+id/back_button"
+        android:onClick="goBackButtonPress"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:nestedScrollingEnabled="true"
+        android:layout_margin="50dp"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

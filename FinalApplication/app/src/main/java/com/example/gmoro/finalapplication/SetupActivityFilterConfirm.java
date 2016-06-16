@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 
 /**
  * this window will appear to the user at the very end of the setup process, but
@@ -14,10 +16,12 @@ public class SetupActivityFilterConfirm extends Activity{
     //define holder for search parameter
     String searchParameter;
 
+    TextView searchPreviewWindow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_setup_filter_confirm);
 
         //create intent to retrieve data from last screen
@@ -28,6 +32,10 @@ public class SetupActivityFilterConfirm extends Activity{
                 getSearchParameterFromLastActivityIntent.getExtras().getString("searchParameter");
 
 
+        //define and display the search parameter in the window
+
+        searchPreviewWindow = (TextView)findViewById(R.id.search_parameter_preview);
+        searchPreviewWindow.setText(searchParameter);
     }
 
     //when the user clicks continue
@@ -48,4 +56,21 @@ public class SetupActivityFilterConfirm extends Activity{
         //close this activity
         finish();
     }
+
+    //when the button to go back is pressed
+    public void goBackButtonPress(View view) {
+
+        //create intent go back to last screen
+        Intent goBackToFilterTypeSelect = new Intent(this,SetupActivityFilterTypeSelect.class);
+
+        //result because intents want it
+        final int result = 1;
+
+        //start activity
+        startActivity(goBackToFilterTypeSelect);
+
+        //close this window
+        finish();
+    }
+
 }

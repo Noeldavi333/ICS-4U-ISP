@@ -5,6 +5,7 @@ import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 /**
@@ -21,7 +22,7 @@ public class SetupActivityFilterBoard extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_setup_filter_board);
 
         //find entry box in XML
@@ -34,19 +35,40 @@ public class SetupActivityFilterBoard extends Activity{
         //set the search parameter to their input
         searchParameter = boardEntryBox.getText().toString();
 
-        //create intent to switch to confirmation window
-        Intent searchByBoardIntent = new Intent(this, SetupActivityFilterConfirm.class);
+        if (searchParameter.isEmpty()){
+            //toast thing
+        }
+        else {
+            //create intent to switch to confirmation window
+            Intent searchByBoardIntent = new Intent(this, SetupActivityFilterConfirm.class);
 
-        //final result because of the intent
+            //final result because of the intent
+            final int result = 1;
+
+            //send search parameter with intent
+            searchByBoardIntent.putExtra("searchParameter",searchParameter);
+
+            //start intent
+            startActivity(searchByBoardIntent);
+
+            //close this activity
+            finish();
+        }
+    }
+
+    //when the button to go back is pressed
+    public void goBackButtonPress(View view) {
+
+        //create intent go back to last screen
+        Intent goBackToFilterTypeSelect = new Intent(this,SetupActivityFilterTypeSelect.class);
+
+        //result because intents want it
         final int result = 1;
 
-        //send search parameter with intent
-        searchByBoardIntent.putExtra("searchParameter",searchParameter);
+        //start activity
+        startActivity(goBackToFilterTypeSelect);
 
-        //start intent
-        startActivity(searchByBoardIntent);
-
-        //close this activity
+        //close this window
         finish();
     }
 }

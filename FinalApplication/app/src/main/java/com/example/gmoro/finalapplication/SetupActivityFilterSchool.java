@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 /**
@@ -20,7 +21,7 @@ public class SetupActivityFilterSchool extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_setup_filter_school);
 
         //link text entry point to XML object
@@ -33,19 +34,40 @@ public class SetupActivityFilterSchool extends Activity {
         //update search parameter to their input
         searchParameter = schoolEntryBox.getText().toString();
 
-        //create intent to move to main activity
-        Intent searchBySchoolIntent = new Intent(this, SetupActivityFilterConfirm.class);
+        if(searchParameter.isEmpty()){
+            //toast thing
+        }
+        else{
+            //create intent to move to main activity
+            Intent searchBySchoolIntent = new Intent(this, SetupActivityFilterConfirm.class);
 
-        //send search parameter with intent
-        searchBySchoolIntent.putExtra("searchParamater",searchParameter);
+            //send search parameter with intent
+            searchBySchoolIntent.putExtra("searchParamater",searchParameter);
 
-        //final int because Intent wants it
+            //final int because Intent wants it
+            final int result = 1;
+
+            //start the activity
+            startActivity(searchBySchoolIntent);
+
+            //close this activity
+            finish();
+        }
+    }
+
+    //when the button to go back is pressed
+    public void goBackButtonPress(View view) {
+
+        //create intent go back to last screen
+        Intent goBackToFilterTypeSelect = new Intent(this,SetupActivityFilterTypeSelect.class);
+
+        //result because intents want it
         final int result = 1;
 
-        //start the activity
-        startActivity(searchBySchoolIntent);
+        //start activity
+        startActivity(goBackToFilterTypeSelect);
 
-        //close this activity
+        //close this window
         finish();
     }
 }
