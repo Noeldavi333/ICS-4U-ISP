@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 
 /**
- * Created by gmoro on 2016-06-15.
+ * This window will appear if the user elects to filter their data by school board
  */
 public class SetupActivityFilterBoard extends Activity{
 
+    //define entry box
     EditText boardEntryBox;
 
-    String searchParamater;
+    //define search parameter
+    String searchParameter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,21 +24,29 @@ public class SetupActivityFilterBoard extends Activity{
 
         setContentView(R.layout.activity_setup_filter_board);
 
+        //find entry box in XML
         boardEntryBox = (EditText)findViewById(R.id.board_entry_box);
     }
 
+    //when the user preses continue
     public void filterBoardContinueClick(View view) {
 
-        searchParamater = boardEntryBox.getText().toString();
+        //set the search parameter to their input
+        searchParameter = boardEntryBox.getText().toString();
 
+        //create intent to switch to confirmation window
         Intent searchByBoardIntent = new Intent(this, SetupActivityFilterConfirm.class);
 
+        //final result because of the intent
         final int result = 1;
 
-        searchByBoardIntent.putExtra(searchParamater,searchParamater);
+        //send search parameter with intent
+        searchByBoardIntent.putExtra("searchParameter",searchParameter);
 
+        //start intent
         startActivity(searchByBoardIntent);
 
+        //close this activity
         finish();
     }
 }

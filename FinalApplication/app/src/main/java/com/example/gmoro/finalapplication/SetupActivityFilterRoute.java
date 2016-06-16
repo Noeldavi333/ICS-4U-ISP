@@ -7,34 +7,44 @@ import android.view.View;
 import android.widget.EditText;
 
 /**
- * Created by gmoro on 2016-06-15.
+ * this window will appear if the user elects to filter their data by bus route
  */
 public class SetupActivityFilterRoute extends Activity{
 
+    //define text entry point
     EditText routeEntryBox;
 
-    String searchParamater;
+    //define search string
+    String searchParameter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_filter_route);
 
+        //link entry point to XML object
         routeEntryBox = (EditText) findViewById(R.id.route_number_entry);
     }
 
+    //when the user presses the continue button
     public void filterRouteContinueClick(View view) {
 
-        searchParamater = routeEntryBox.getText().toString();
+        //update the search parameter to users entry
+        searchParameter = routeEntryBox.getText().toString();
 
+        //create intent to send search to confirmation screen
         Intent searchByRouteIntent = new Intent(this, SetupActivityFilterConfirm.class);
 
+        //final int as required by intent
         final int result = 1;
 
-        searchByRouteIntent.putExtra(searchParamater,searchParamater);
+        //send search parameter with intent
+        searchByRouteIntent.putExtra("searchParamater",searchParameter);
 
+        //start activity
         startActivity(searchByRouteIntent);
 
+        //close this activity
         finish();
 
     }
