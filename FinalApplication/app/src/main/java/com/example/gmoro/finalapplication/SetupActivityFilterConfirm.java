@@ -53,6 +53,8 @@ public class SetupActivityFilterConfirm extends Activity{
         //start the activity
         startActivity(sendSearchParameterToMainActivity);
 
+
+
         //close this activity
         finish();
     }

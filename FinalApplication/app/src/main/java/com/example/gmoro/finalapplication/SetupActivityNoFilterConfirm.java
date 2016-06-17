@@ -39,6 +39,8 @@ public class SetupActivityNoFilterConfirm extends Activity {
         //start the activity
         startActivity(sendNullSearchParameter);
 
+
+
         //close this activity
         finish();
     }
