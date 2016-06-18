@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * this window will appear to the user at the very end of the setup process, but
@@ -39,7 +44,7 @@ public class SetupActivityFilterConfirm extends Activity{
     }
 
     //when the user clicks continue
-    public void filterConfirmClick(View view) {
+    public void filterConfirmClick(View view) throws IOException, FileNotFoundException{
 
         //create intent to change screens to main activity
         Intent sendSearchParameterToMainActivity = new Intent(this, MainActivity.class);
@@ -53,6 +58,23 @@ public class SetupActivityFilterConfirm extends Activity{
         //start the activity
         startActivity(sendSearchParameterToMainActivity);
 
+        //save the search parameter for future runs
+
+        //get the file
+        File file = new File("SaveFile.txt");
+
+        //Overwrites the file (True would append to the file).
+        FileWriter fw = new FileWriter(file, false);
+
+        //PrintWriter allows writing to a file one line at a time
+        PrintWriter writer = new PrintWriter(fw);
+
+        //Now we can write all the variables we want to store to the file.
+        writer.println(searchParameter);
+
+        //Closes the file.
+        writer.close();
+        fw.close();
 
 
         //close this activity

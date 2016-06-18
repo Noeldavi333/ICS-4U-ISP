@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 /**
  * this window will appear at the end of setup, but only if the user does not filter their data
@@ -22,7 +27,7 @@ public class SetupActivityNoFilterConfirm extends Activity {
     }
 
     //when the user clicks the continue button
-    public void noFilterConfirmClick(View view) {
+    public void noFilterConfirmClick(View view) throws IOException, FileNotFoundException{
 
         //set the search parameter to space (something all items will include)
         searchParameter = " ";
@@ -39,7 +44,23 @@ public class SetupActivityNoFilterConfirm extends Activity {
         //start the activity
         startActivity(sendNullSearchParameter);
 
+        //save the search parameter for future runs
 
+        //get the file
+        File file = new File("SaveFile.txt");
+
+        //Overwrites the file (True would append to the file)
+        FileWriter fw = new FileWriter(file, false);
+
+        //PrintWriter allows writing to a file one line at a time
+        PrintWriter writer = new PrintWriter(fw);
+
+        //Now we can write all the variables we want to store to the file
+        writer.println(searchParameter);
+
+        //Closes the file.
+        writer.close();
+        fw.close();
 
         //close this activity
         finish();
