@@ -6,16 +6,35 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:text="..."
-        android:id="@+id/button"
-        android:onClick="filterConfirmClick"
-        android:layout_gravity="right"
-        android:textSize="20dp"
-        android:textStyle="bold|italic"
-        android:nestedScrollingEnabled="true" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="..."
+            android:id="@+id/button"
+            android:onClick="filterConfirmClick"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:nestedScrollingEnabled="true"
+            android:adjustViewBounds="false"
+            android:background="@drawable/showhidemenu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday, June 18  4:43am"
+            android:id="@+id/date_time_view"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
