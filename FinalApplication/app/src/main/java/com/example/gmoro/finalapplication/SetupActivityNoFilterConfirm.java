@@ -1,12 +1,16 @@
 package com.example.gmoro.finalapplication;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -45,22 +49,12 @@ public class SetupActivityNoFilterConfirm extends Activity {
         startActivity(sendNullSearchParameter);
 
         //save the search parameter for future runs
-
-        //get the file
-        File file = new File("SaveFile.txt");
-
-        //Overwrites the file (True would append to the file)
-        FileWriter fileWrite = new FileWriter(file, false);
-
-        //PrintWriter allows writing to a file one line at a time
-        PrintWriter writer = new PrintWriter(fileWrite);
-
-        //Now we can write all the variables we want to store to the file
-        writer.println(searchParameter);
-
-        //Closes the file.
-        writer.close();
-        fileWrite.close();
+        SharedPreferences sp =
+                getSharedPreferences("MyPrefs",
+                        Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("searchParameter", searchParameter);
+        editor.commit();
 
         //close this activity
         finish();
