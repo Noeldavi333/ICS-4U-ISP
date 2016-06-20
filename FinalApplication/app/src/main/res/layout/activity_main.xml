@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="..."
+            android:id="@+id/button"
+            android:onClick="filterConfirmClick"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:nestedScrollingEnabled="true"
+            android:adjustViewBounds="false"
+            android:background="@drawable/showhidemenu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday, June 18  4:43am"
+            android:id="@+id/date_time_view"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NSTS Notification Service"
+            android:id="@+id/textView17"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Updates"
+        android:id="@+id/textView18"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_margin="10dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="344dp"
+        android:id="@+id/scrollView"
+        android:background="#ffffff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textView19"
+            android:textColor="#000000" />
+    </ScrollView>
+</LinearLayout>
