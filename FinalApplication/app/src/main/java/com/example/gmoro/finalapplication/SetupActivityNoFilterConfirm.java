@@ -27,7 +27,7 @@ public class SetupActivityNoFilterConfirm extends Activity {
     }
 
     //when the user clicks the continue button
-    public void noFilterConfirmClick(View view) throws IOException, FileNotFoundException{
+    public void noFilterConfirmClick(View view) throws IOException{
 
         //set the search parameter to space (something all items will include)
         searchParameter = " ";
@@ -50,17 +50,17 @@ public class SetupActivityNoFilterConfirm extends Activity {
         File file = new File("SaveFile.txt");
 
         //Overwrites the file (True would append to the file)
-        FileWriter fw = new FileWriter(file, false);
+        FileWriter fileWrite = new FileWriter(file, false);
 
         //PrintWriter allows writing to a file one line at a time
-        PrintWriter writer = new PrintWriter(fw);
+        PrintWriter writer = new PrintWriter(fileWrite);
 
         //Now we can write all the variables we want to store to the file
         writer.println(searchParameter);
 
         //Closes the file.
         writer.close();
-        fw.close();
+        fileWrite.close();
 
         //close this activity
         finish();

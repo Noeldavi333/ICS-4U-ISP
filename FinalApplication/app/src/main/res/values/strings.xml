@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Final Application</string>
+    <string name="app_name">Bus Info</string>
     <string name="filter_route_body_text_string">If you\'re unsure, someone in your school\'s administration should be able to give you it.</string>
     <string name="setup_intro_body_text_string">First, we need to know a little about you and your school. To start receiving notifications, press continue below.</string>
     <string name="setup_intro_two_body_text_strig">Filtering your alerts will allow us to only show you what you need to see. If you want to see everything, click no.</string>
@@ -8,4 +8,5 @@
     <string name="setup_filter_school_body_text_string">Enter the name of the school you\'d like updates about. For example, enter \"Governor Simcoe\" if you would like updates about Governor Simcoe Secondary School.</string>
     <string name="setup_filter_board_body_text_string">Enter the acronym for your school board. For example, if you\'d like updates for the District School Board of Niagara, enter \"DSBN\".</string>
     <string name="setup_filter_confirm_body_text_string">You\'re all set to start getting personalized notifications. Remember, you change this any time from the options menu.</string>
+    <string name="search_parameter_save"></string>
 </resources>

@@ -9,7 +9,7 @@ import android.view.Window;
 /**
  * This is the second window the user will see in the set up process
  */
-public class SetupActivityTwo extends Activity{
+public class SetupActivityTwo extends Activity {
 
 
     @Override
@@ -17,10 +17,10 @@ public class SetupActivityTwo extends Activity{
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_setup_two);
-
     }
 
-    //when the user chooses to filter the data
+        //when the user chooses to filter the data
+
     public void yesFilterContinueClick(View view) {
 
         //create intent to jump filter type screen
@@ -43,7 +43,7 @@ public class SetupActivityTwo extends Activity{
         Intent doNotFilterIntent = new Intent(this, SetupActivityNoFilterConfirm.class);
 
         //result int as required by intents
-        final int result =1;
+        final int result = 1;
 
         //start activity - do not request result
         startActivity(doNotFilterIntent);
@@ -56,7 +56,7 @@ public class SetupActivityTwo extends Activity{
     public void goBackButtonPress(View view) {
 
         //create intent go back to last screen
-        Intent goBackToSetup1 = new Intent(this,SetupActivityFilterTypeSelect.class);
+        Intent goBackToSetup1 = new Intent(this, SetupActivityOne.class);
 
         //result because intents want it
         final int result = 1;
@@ -66,5 +66,6 @@ public class SetupActivityTwo extends Activity{
 
         //close this window
         finish();
+        }
     }
-}
+

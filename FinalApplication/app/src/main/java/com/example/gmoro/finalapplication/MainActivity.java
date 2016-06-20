@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    String searchParameter,dateTimeOut, dateTimeString;
+    String searchParameter = "",dateTimeOut, dateTimeString;
 
     TextView listOfRecentItems,dateViewOut;
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //if there has not been a search parameter defined
-        if(searchParameter.isEmpty()){
+        if(searchParameter.length()==0){
             //define the intent to load the setup process
             Intent beginSetupProcessIntent = new Intent(this, SetupActivityOne.class);
 
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
             //running in the background. It does not need to close as the user will back in a couple
             //of minutes.
         }
-
-        //reading in the rss feed
+        else {
+            //reading in the rss feed
 
             int event;
             String text=null;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // connecting to the rss feed
-                URL url = new URL("http://www.google.ca"); //Gabe I need the address from you
+                URL url = new URL("https://portal.nsts.ca/rss/feed-en-CA.xml"); //tell the program where the RSS is locatued
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setReadTimeout(10000 /* milliseconds */);
@@ -155,5 +155,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
     }
+
+}
