@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -74,7 +81,79 @@ public class MainActivity extends AppCompatActivity {
             //of minutes.
         }
 
+        //reading in the rss feed
+
+            int event;
+            String text=null;
+
+
+            try {
+                // connecting to the rss feed
+                URL url = new URL("http://www.google.ca"); //Gabe I need the address from you
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setReadTimeout(10000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+
+                // Starts the query
+                conn.connect();
+
+                //getting a stream the parser can use
+                InputStream stream = conn.getInputStream();
+
+                //creating the parser
+                XmlPullParserFactory xppf = XmlPullParserFactory.newInstance();
+                XmlPullParser parser = xppf.newPullParser();
+
+                parser.setInput(stream, null);
+
+                event = parser.getEventType();
+
+                //parse through the entire document until the end is reached
+                while (event != XmlPullParser.END_DOCUMENT) {
+                    String name = parser.getName();
+
+                    switch (event){
+                        case XmlPullParser.START_TAG:
+                            //at the opening tag
+                            break;
+
+                        case XmlPullParser.TEXT:
+                            //gets the text from inside the tag
+                            text = parser.getText();
+                            break;
+
+                        case XmlPullParser.END_TAG:
+                            // after reading the contents of the tag
+                            if(name.equals("title")){
+                                // read in whatever the text contains. I'm not sure exactly which tags we will have
+                                // but we should read the contents into ArrayLists (by tag?) to be searched from later
+                                // titleList.Add(text)
+                            }
+
+                            else if(name.equals("link")){
+                                //linkList.add(text)
+                            }
+
+                            else if(name.equals("description")){
+                                //etc
+                            }
+
+                            break;
+                    }
+                    //move to the next part of the file
+                    event = parser.next();
+                }
+
+                //parsingComplete = false;
+            }
+
+            catch (Exception e) {
+                // java likes these try/catch setups :)
+            }
+        }
 
 
     }
-}
