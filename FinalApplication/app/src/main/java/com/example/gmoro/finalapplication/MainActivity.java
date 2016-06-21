@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView listOfRecentItems,dateViewOut;
 
-    ArrayList titleText, dateText, descriptionText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,18 +83,19 @@ public class MainActivity extends AppCompatActivity {
 
                 event = parser.getEventType();
 
-                String title = "", description = "", date = "";
+                String title = "", description = "", date = "", name = "";
                 Boolean relevant = false;
 
                 //parse through the entire document until the end is reached
                 while (event != XmlPullParser.END_DOCUMENT) {
 
-                    //get the tag's name
-                    String name = parser.getName();
+
 
                     switch (event) {
                         case XmlPullParser.START_TAG:
                             //at the opening tag
+                            //get the tag's name
+                            name = parser.getName();
                             break;
 
                         case XmlPullParser.TEXT:
@@ -112,9 +113,8 @@ public class MainActivity extends AppCompatActivity {
                                 //this tag contains the route number
 
                                 //reading in the value
+
                                 title = parser.getText();
-                                //if that doesn't work, try:
-                                //title = parser.getName or .getNameSpace
 
                                 //If the specified route number is in here, we'll want to keep this item
                                 if (title.contains(searchParameter)) {
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                 //this tag has the school
                                 description = parser.getText();
 
+                                //we'll want to print this if it has the correct school
                                 if (description.contains(searchParameter)) {
                                     relevant = true;
                                 }
@@ -131,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case XmlPullParser.END_TAG:
+                            //get the tag's name again. We may go directly from one end tag to another
+                            name = parser.getName();
                             // after reading all the contents of the "item" parent element
                             if ((name.equals("item")) && (title.contains("Route"))) { //checking to see that it's not a "no closures" or "no general notifications
                                 if (relevant == true) {
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                                     String school = description.substring(description.indexOf("Schools"), description.indexOf("</p>]]"));
 
                                     // print out route, status, school, date to the text field
-                                    // **I Don't know what your textfield is called**
+
 
 
                                     //and reset the boolean
