@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // connecting to the rss feed
-                URL url = new URL("https://portal.nsts.ca/rss/feed-en-CA.xml"); //tell the program where the RSS is locatued
+                URL url = new URL("https://portal.nsts.ca/rss/feed-en-CA.xml"); //tell the program where the RSS is located
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setReadTimeout(10000 /* milliseconds */);
@@ -83,35 +83,77 @@ public class MainActivity extends AppCompatActivity {
 
                 event = parser.getEventType();
 
+                String title = "", description = "", date = "";
+                Boolean relevant = false;
+
                 //parse through the entire document until the end is reached
                 while (event != XmlPullParser.END_DOCUMENT) {
+
+                    //get the tag's name
                     String name = parser.getName();
 
-                    switch (event){
+                    switch (event) {
                         case XmlPullParser.START_TAG:
                             //at the opening tag
                             break;
 
                         case XmlPullParser.TEXT:
-                            //gets the text from inside the tag
-                            text = parser.getText();
+
+
+                            if (name.equals("pubDate")) {
+                                //this tag has the date
+                                date = parser.getText();
+                            }
+
+
+                            break;
+                        case XmlPullParser.COMMENT:
+                            if (name.equals("title")) {
+                                //this tag contains the route number
+
+                                //reading in the value
+                                title = parser.getText();
+                                //if that doesn't work, try:
+                                //title = parser.getName or .getNameSpace
+
+                                //If the specified route number is in here, we'll want to keep this item
+                                if (title.contains(searchParameter)) {
+                                    relevant = true;
+                                }
+                            } else if (name.equals("description")) {
+                                //this tag has the school
+                                description = parser.getText();
+
+                                if (description.contains(searchParameter)) {
+                                    relevant = true;
+                                }
+                            }
                             break;
 
                         case XmlPullParser.END_TAG:
-                            // after reading the contents of the tag
-                            if(name.equals("title")){
-                                // read in whatever the text contains. I'm not sure exactly which tags we will have
-                                // but we should read the contents into ArrayLists (by tag?) to be searched from later
-                                // titleList.Add(text)
+                            // after reading all the contents of the "item" parent element
+                            if ((name.equals("item")) && (title.contains("Route"))) { //checking to see that it's not a "no closures" or "no general notifications
+                                if (relevant == true) {
+                                    //printing out relevant info... we'll have
+                                    //to cut up the strings a bit
+                                    //because they look yucky as-is
+
+                                    //Separating the route data and the bus status
+                                    String route = title.substring(title.indexOf("Route"), title.indexOf("Status"));
+                                    String status = title.substring(title.indexOf("Status"), title.indexOf("]"));
+
+                                    //Separating the affected school out of the description
+                                    String school = description.substring(description.indexOf("Schools"), description.indexOf("</p>]]"));
+
+                                    // print out route, status, school, date to the text field
+                                    // **I Don't know what your textfield is called**
+
+
+                                    //and reset the boolean
+                                    relevant = false;
+                                }
                             }
 
-                            else if(name.equals("link")){
-                                //linkList.add(text)
-                            }
-
-                            else if(name.equals("description")){
-                                //etc
-                            }
 
                             break;
                     }
@@ -119,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     event = parser.next();
                 }
 
-                //parsingComplete = false;
+
             }
 
             catch (Exception e) {
