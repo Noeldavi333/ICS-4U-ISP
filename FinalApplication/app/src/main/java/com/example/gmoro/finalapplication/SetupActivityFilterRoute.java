@@ -50,7 +50,7 @@ public class SetupActivityFilterRoute extends Activity{
             final int result = 1;
 
             //send search parameter with intent
-            searchByRouteIntent.putExtra("searchParamater",searchParameter);
+            searchByRouteIntent.putExtra("searchParameter",searchParameter);
 
             //start activity
             startActivity(searchByRouteIntent);

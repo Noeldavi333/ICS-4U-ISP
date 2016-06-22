@@ -66,7 +66,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="344dp"
+        android:layout_height="316dp"
         android:id="@+id/scrollView"
         android:background="#ffffff"
         android:layout_marginLeft="20dp"
@@ -78,7 +78,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView19"
+            android:id="@+id/notification_view"
             android:textColor="#000000" />
     </ScrollView>
+
 </LinearLayout>
