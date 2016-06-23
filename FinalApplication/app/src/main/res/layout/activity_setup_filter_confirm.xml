@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetupActivityFilterConfirm">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Looks Good!"
+        android:id="@+id/textView14"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_filter_confirm_body_text_string"
+        android:id="@+id/textView15"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have chosen to recieve notifications containing:"
+        android:id="@+id/textView16"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="_"
+        android:textStyle="bold"
+        android:id="@+id/search_parameter_preview"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish Setup"
+        android:id="@+id/filter_confirmation_go_button"
+        android:onClick="filterConfirmClick"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:nestedScrollingEnabled="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        android:id="@+id/back_button"
+        android:onClick="goBackButtonPress"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:nestedScrollingEnabled="true"
+        android:layout_margin="50dp"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
