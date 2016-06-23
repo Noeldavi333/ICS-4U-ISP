@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
             //clear box
             listOfRecentItems.setText("");
 
-
-
-
+            refresh();
     }
     }
 

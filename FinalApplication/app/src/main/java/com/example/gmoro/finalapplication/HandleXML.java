@@ -48,45 +48,25 @@ public class HandleXML {
                             //this tag has the date
                             date = parser.getText();
                             output = "Error ln 128";
+
                         }
 
-
                         break;
-                    case XmlPullParser.COMMENT:
-                        if (name.equals("title")) {
-                            //this tag contains the route number
 
-                            //reading in the value
-
-                            title = parser.getText();
-
-                            output = "Error ln 141";
-
-                            //If the specified route number is in here, we'll want to keep this item
-                            if (title.contains(searchParameter)) {
-                                relevant = true;
-                            }
-                        } else if (name.equals("description")) {
-                            //this tag has the school
-                            description = parser.getText();
-
-                            //we'll want to print this if it has the correct school
-                            if (description.contains(searchParameter)) {
-                                relevant = true;
-                            }
-                        }
-                        break;
 
                     case XmlPullParser.END_TAG:
                         //get the tag's name again. We may go directly from one end tag to another
                         name = parser.getName();
-                        output = "Error ln 161";
+
+                        output = date;
                         // after reading all the contents of the "item" parent element
                         if ((name.equals("item")) && (title.contains("Route"))) { //checking to see that it's not a "no closures" or "no general notifications
                             if (relevant == true) {
                                 //printing out relevant info... we'll have
                                 //to cut up the strings a bit
                                 //because they look yucky as-is
+
+                                output = "error hereish";
 
                                 //Separating the route data and the bus status
                                 String route = title.substring(title.indexOf("Route"), title.indexOf("Status"));
@@ -113,7 +93,7 @@ public class HandleXML {
                         break;
                 }
                 //go to the next tag
-                event = parser.next();
+                event = parser.nextToken();
             }
             //let the main class know when the parsing is done
             parsingComplete = false;
@@ -154,6 +134,8 @@ public class HandleXML {
                     parseXMLAndStoreIt(parser, searchParameter);
                     //closing the input stream
                     stream.close();
+
+                    conn.disconnect();
                 }
 
                 catch (Exception e) {
