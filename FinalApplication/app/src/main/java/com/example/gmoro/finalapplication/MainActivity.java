@@ -9,12 +9,20 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 public class MainActivity extends AppCompatActivity {
 
     public static Activity activity;
 
     public String searchParameter = "", dateTimeOut, dateTimeString;
-    TextView listOfRecentItems, dateViewOut;
+    static TextView alsoListOfRecentObjects, dateViewOut;
+
+    static boolean relevant;
+
+    static String title, description, date;
+
 
 
     @Override
@@ -25,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        alsoListOfRecentObjects = (TextView) MainActivity.activity.findViewById(R.id.notification_view);
+
+
         //load saved search parameter
         SharedPreferences sp = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         searchParameter = sp.getString("searchParameter", searchParameter);
-
-        listOfRecentItems = (TextView) findViewById(R.id.notification_view);
 
 
         //if there has not been a search parameter defined
@@ -50,24 +59,61 @@ public class MainActivity extends AppCompatActivity {
             //run the update rss feed
 
             //clear box
-            listOfRecentItems.setText("");
 
-            refresh();
+            HandleXML.fetchXML(searchParameter);
+        }
     }
-    }
+
+    public static void onProgressUpdate(String searchParameter, Element currentElement) {
+
+        alsoListOfRecentObjects.setText("");
+
+        NodeList textList = currentElement.getElementsByTagName("title");   //I have to get
+        // multiple nodes because every line feed creates a new node. this may end up giving
+        // us a few unwanted new lines
 
 
-    public void refresh() {
-        //creating a new instance of the class that does the parsing
-        HandleXML obj = new HandleXML();
-        //calling the required function
-        obj.fetchXML(searchParameter);
-
-        //show the resulting output
-        while (obj.parseComplete = false) {
-
-            //literally nothing
+        for (int j = 0; j < textList.getLength(); j++) {
+            //reading in the contents of the title tag
+            title += textList.item(j).getTextContent();
         }
 
+        textList = currentElement.getElementsByTagName("description");
+
+        for (int j = 0; j < textList.getLength(); j++) {
+            //reading in the contents of the description tag
+            description += textList.item(j).getTextContent();
+        }
+
+        textList = currentElement.getElementsByTagName("pubDate");
+        for (int j = 0; j < textList.getLength(); j++) {
+            //reading in the date tag
+            date += textList.item(j).getTextContent();
+        }
+
+
+        //checking to see if this item contains the search parameter
+        if (title.contains(searchParameter)) {
+            relevant = true;
+        } else if (description.contains(searchParameter)) {
+            relevant = true;
+        }
+
+        //and now setting up the final output string
+
+        printStuff(title, description,date);
+
+
+        }
+
+public static void printStuff(String title, String description, String date) {
+    if ((relevant) && (title.contains("Route"))) {
+
+        alsoListOfRecentObjects.append(title);
+        alsoListOfRecentObjects.append("\n" + date);
+        alsoListOfRecentObjects.append("\n" + description);
+        alsoListOfRecentObjects.append("\n");
+        alsoListOfRecentObjects.append("\n");
     }
+}
 }

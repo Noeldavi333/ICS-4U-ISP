@@ -2,6 +2,7 @@
 package com.example.gmoro.finalapplication;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -26,32 +27,31 @@ import org.xmlpull.v1.XmlPullParserFactory;
 // So apparently you can't connect to the internet from the main thread/ main class
 public class HandleXML extends Activity {
 
-    public TextView alsoListOfRecentObjects;
+
+    TextView alsoListOfRecentObjects;
 
     String route, status, school;
 
     public String output = "No notifications";
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
-    boolean relevant = false;
-    String name = "", date = "", title = "", description = "";
-    Boolean parseComplete = false;
+    static boolean relevant = false;
+    static String name = "", date = "", title = "", description = "";
+    static Boolean parseComplete = false;
 
     // so the main can get the result
 
 
-    public void fetchXML(final String searchParameter) {
 
-
+    public static void fetchXML(final String searchParameter) {
 
         //getting a new thread to connect to the internet
 
         Thread thread = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
 
-                alsoListOfRecentObjects = (TextView) MainActivity.activity.findViewById(R.id.notification_view);
+            @Override
+                public void run() {
 
                 System.out.println("1");
 
@@ -77,16 +77,14 @@ public class HandleXML extends Activity {
 
                     //calling the function that will parse the document
 
-                   System.out.println("XML Fetching Complete :)");
+                    System.out.println("XML Fetching Complete :)");
 
                     System.out.println("what the actual fuck");
                     //create an output string
 
-                    alsoListOfRecentObjects.setText("");
-
-
                     // Create a builder factory
                     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
 
                     // Configure it to coalesce CDATA nodes
                     factory.setCoalescing(true);
@@ -109,56 +107,13 @@ public class HandleXML extends Activity {
                         date = "";
                         description = "";
 
+
                         if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                             Element currentElement = (Element) currentNode;
 
-                            NodeList textList = currentElement.getElementsByTagName("title");   //I have to get
-                            // multiple nodes because every line feed creates a new node. this may end up giving
-                            // us a few unwanted new lines
+                            MainActivity.onProgressUpdate(searchParameter,currentElement);
 
-
-                            for (int j = 0; j < textList.getLength(); j++) {
-                                //reading in the contents of the title tag
-                                title += textList.item(j).getTextContent();
-                            }
-
-                            textList = currentElement.getElementsByTagName("description");
-
-                            for (int j = 0; j < textList.getLength(); j++) {
-                                //reading in the contents of the description tag
-                                description += textList.item(j).getTextContent();
-                            }
-
-                            textList = currentElement.getElementsByTagName("pubDate");
-                            for (int j = 0; j < textList.getLength(); j++) {
-                                //reading in the date tag
-                                date += textList.item(j).getTextContent();
-                            }
-
-
-                            //checking to see if this item contains the search parameter
-                            if (title.contains(searchParameter)) {
-                                relevant = true;
-                            } else if (description.contains(searchParameter)) {
-                                relevant = true;
-                            }
-
-
-                            //and now setting up the final output string
-                            if ((relevant) && (title.contains("Route"))) {
-
-
-                                alsoListOfRecentObjects.append(title);
-                                alsoListOfRecentObjects.append("\n" + date);
-                                alsoListOfRecentObjects.append("\n" + description);
-                                alsoListOfRecentObjects.append("\n");
-                                alsoListOfRecentObjects.append("\n");
-
-
-                                //and reset the boolean
-                                relevant = false;
-
-                            }
+                            relevant = false;
                         }
                     }
 
@@ -183,18 +138,5 @@ public class HandleXML extends Activity {
 
         thread.start();
     } //done
-
-
-    //public void parseXMLAndStoreIt(InputStream is, String searchParameter) throws IOException,
-      //      SAXException, ParserConfigurationException {
-
-
-    //}
-
-    public void setOutput(String ass) {
-
-        output = ass;
-    }
-
 
 }

@@ -51,6 +51,10 @@
             android:label="Filter by School Board"
             android:theme="@style/AppTheme"/>
 
+        <activity android:name=".HandleXML"
+            android:label="XML Handler"
+            android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>
