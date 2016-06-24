@@ -48,6 +48,14 @@ public class SetupActivityFilterConfirm extends Activity{
     //when the user clicks continue
     public void filterConfirmClick(View view) throws IOException, FileNotFoundException{
 
+//save the search parameter for future runs
+        //save the search parameter for future runs
+        SharedPreferences sp =
+                getSharedPreferences("MyPrefs",
+                        Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("searchParameter", searchParameter);
+        editor.commit();
         //create intent to change screens to main activity
         Intent sendSearchParameterToMainActivity = new Intent(this, MainActivity.class);
 
@@ -60,14 +68,7 @@ public class SetupActivityFilterConfirm extends Activity{
         //start the activity
         startActivity(sendSearchParameterToMainActivity);
 
-        //save the search parameter for future runs
-        //save the search parameter for future runs
-        SharedPreferences sp =
-                getSharedPreferences("MyPrefs",
-                        Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("searchParameter", searchParameter);
-        editor.commit();
+
 
 
         //close this activity

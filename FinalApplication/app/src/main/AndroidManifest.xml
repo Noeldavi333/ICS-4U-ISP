@@ -35,6 +35,10 @@
             android:label="Confirm No Filter"
             android:theme="@style/AppTheme"/>
 
+        <activity android:name=".SetupActivityFilterConfirm"
+            android:label="Confirm Filter"
+            android:theme="@style/AppTheme"/>
+
         <activity android:name=".SetupActivityFilterTypeSelect"
             android:label="Select Type of Filter"
             android:theme="@style/AppTheme"/>

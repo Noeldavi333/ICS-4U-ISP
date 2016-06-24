@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -33,7 +34,7 @@ public class HandleXML extends AsyncTask<String, String, String> {
 
     String route, status, school;
 
-    public static String output = "No notifications";
+    public static String output = "";
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
     static boolean relevant = false;
@@ -50,9 +51,10 @@ public class HandleXML extends AsyncTask<String, String, String> {
     protected String doInBackground(String... searchParameter) {
         //getting a new thread to connect to the internet
 
+        String search = searchParameter[0];
 
-
-        System.out.println("1");
+        System.out.println(search);
+        output = "";
 
         try {
             //setting up the url and the connection specs
@@ -61,7 +63,7 @@ public class HandleXML extends AsyncTask<String, String, String> {
 
             System.out.println("2");
 
-            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setReadTimeout(90000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
@@ -106,6 +108,8 @@ public class HandleXML extends AsyncTask<String, String, String> {
                 date = "";
                 description = "";
 
+                System.out.println("this is dumb");
+
 
                 if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element currentElement = (Element) currentNode;
@@ -137,21 +141,24 @@ public class HandleXML extends AsyncTask<String, String, String> {
                     //checking to see if this item contains the search parameter
                     if (title.contains(csParameter)) {
                         relevant = true;
-                    } else if (description.contains(csParameter)) {
+                    } else if (description.contains(search)) {
                         relevant = true;
                     }
 
                     //and now setting up the final output string
-                    if ((relevant) && (title.contains("Route"))) {
+                    if ((relevant) && (title.contains(search))) {
 
-                        output += (title);
-                        output +=("\n" + date);
-                        output +=("\n" + description);
+                        output += (title );
+                        output +=("\n" + date );
+                        output +=("\n" + description );
                         output +=("\n");
-                        output +=("\n");
+                        output +=("\n" + "BreakLineHere");
+
+                        relevant = false;
+
                     }
 
-                    relevant = false;
+
                 }
 
             }
@@ -187,7 +194,8 @@ public class HandleXML extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        //this is where you can update that texview I think.  But I deleted it somewhere maybe. IDK!
+
+        MainActivity.onProgressUpdate(s);
     }
 } //done
 

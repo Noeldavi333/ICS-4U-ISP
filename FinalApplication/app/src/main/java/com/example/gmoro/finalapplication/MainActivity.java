@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String searchParameter = "", dateTimeOut, dateTimeString;
     static TextView alsoListOfRecentObjects, dateViewOut;
+    static String compare = "No notifications";
 
     static boolean relevant;
 
@@ -60,14 +62,59 @@ public class MainActivity extends AppCompatActivity {
 
             //clear box
 
-           // HandleXML.fetchXML(searchParameter);
+           new HandleXML().execute(searchParameter);
         }
     }
 
-    public static void onProgressUpdate(String searchParameter, Element currentElement) {
+    public static void onProgressUpdate(String output) {
+        alsoListOfRecentObjects.setText("");
+
+        System.out.println(output);
+
+        if (output.length() >0) {
+
+            String[] outputSeparated = output.split("BreakLineHere");
+
+            for (int i = 0; i < outputSeparated.length; i++) {
+
+                outputSeparated[i] = outputSeparated[i].replace("<p>", "");
+                outputSeparated[i] = outputSeparated[i].replace("</p>", "");
+                outputSeparated[i] = outputSeparated[i].replace("&nbsp;", " & ");
+                outputSeparated[i] = outputSeparated[i].replace("(", " ");
+                outputSeparated[i] = outputSeparated[i].replace(")", " ");
+
+                alsoListOfRecentObjects.append(outputSeparated[i]);
+            }
+
+
+        }
+
+        else{
+                alsoListOfRecentObjects.setText("Get To School ;)");
+            }
+
+        }
+
+
+    public void clearPreferencesButtonPress(View view) {
 
         alsoListOfRecentObjects.setText("");
 
+        SharedPreferences preferences = getSharedPreferences("searchParameter", 0);
+        preferences.edit().remove("searchParameter").commit();
 
+        Intent clearPreferencesIntent = new Intent(this, SetupActivityOne.class);
+
+        final int result = 1;
+
+        startActivity(clearPreferencesIntent);
+    }
+
+    public void refreshButtonPress(View view) {
+
+        alsoListOfRecentObjects.setText("");
+        new HandleXML().execute(searchParameter);
+
+    }
 }
-}
+
