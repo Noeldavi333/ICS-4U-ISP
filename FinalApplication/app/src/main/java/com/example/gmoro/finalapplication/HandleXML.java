@@ -156,6 +156,16 @@ public class HandleXML extends AsyncTask<String, String, String> {
 
                         relevant = false;
 
+                    }else if ((relevant) && (description.contains(search))) {
+
+                        output += (title );
+                        output +=("\n" + date );
+                        output +=("\n" + description );
+                        output +=("\n");
+                        output +=("\n" + "BreakLineHere");
+
+                        relevant = false;
+
                     }
 
 
