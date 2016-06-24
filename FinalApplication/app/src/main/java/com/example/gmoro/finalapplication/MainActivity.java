@@ -1,26 +1,17 @@
 package com.example.gmoro.finalapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
+
+    public static Activity activity;
 
     public String searchParameter = "", dateTimeOut, dateTimeString;
     TextView listOfRecentItems, dateViewOut;
@@ -28,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        activity = this;
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
@@ -70,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
         //calling the required function
         obj.fetchXML(searchParameter);
 
-        while(obj.parsingComplete){/* wait for parsing to finish*/}
         //show the resulting output
-        listOfRecentItems.setText(obj.getOutput());
+        while (obj.parseComplete = false) {
+
+            //literally nothing
+        }
+
     }
 }
