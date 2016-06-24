@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             //clear box
 
-            HandleXML.fetchXML(searchParameter);
+           // HandleXML.fetchXML(searchParameter);
         }
     }
 
@@ -68,52 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         alsoListOfRecentObjects.setText("");
 
-        NodeList textList = currentElement.getElementsByTagName("title");   //I have to get
-        // multiple nodes because every line feed creates a new node. this may end up giving
-        // us a few unwanted new lines
 
-
-        for (int j = 0; j < textList.getLength(); j++) {
-            //reading in the contents of the title tag
-            title += textList.item(j).getTextContent();
-        }
-
-        textList = currentElement.getElementsByTagName("description");
-
-        for (int j = 0; j < textList.getLength(); j++) {
-            //reading in the contents of the description tag
-            description += textList.item(j).getTextContent();
-        }
-
-        textList = currentElement.getElementsByTagName("pubDate");
-        for (int j = 0; j < textList.getLength(); j++) {
-            //reading in the date tag
-            date += textList.item(j).getTextContent();
-        }
-
-
-        //checking to see if this item contains the search parameter
-        if (title.contains(searchParameter)) {
-            relevant = true;
-        } else if (description.contains(searchParameter)) {
-            relevant = true;
-        }
-
-        //and now setting up the final output string
-
-        printStuff(title, description,date);
-
-
-        }
-
-public static void printStuff(String title, String description, String date) {
-    if ((relevant) && (title.contains("Route"))) {
-
-        alsoListOfRecentObjects.append(title);
-        alsoListOfRecentObjects.append("\n" + date);
-        alsoListOfRecentObjects.append("\n" + description);
-        alsoListOfRecentObjects.append("\n");
-        alsoListOfRecentObjects.append("\n");
-    }
 }
 }
