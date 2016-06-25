@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        alsoListOfRecentObjects = (TextView) MainActivity.activity.findViewById(R.id.notification_view);
+        alsoListOfRecentObjects = (TextView) findViewById(R.id.notification_view);
 
 
         //load saved search parameter
