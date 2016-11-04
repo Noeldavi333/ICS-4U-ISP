@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        alsoListOfRecentObjects = (TextView) findViewById(R.id.notification_view);
+        alsoListOfRecentObjects = (TextView) MainActivity.activity.findViewById(R.id.notification_view);
 
 
         //load saved search parameter
@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else{
-                alsoListOfRecentObjects.setText("Get To School ;)");
+                alsoListOfRecentObjects.setText("No network connection, Please check the network" +
+                        " and try again.");
             }
 
         }
@@ -112,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshButtonPress(View view) {
 
-        alsoListOfRecentObjects.setText("");
+        alsoListOfRecentObjects.setText("No Network Connection, Please check the network" +
+                "and try again.");
         new HandleXML().execute(searchParameter);
 
     }

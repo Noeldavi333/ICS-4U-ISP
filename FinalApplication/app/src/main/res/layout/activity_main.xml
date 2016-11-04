@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@drawable/background"
     android:layout_width="match_parent"
@@ -17,7 +18,6 @@
             android:layout_height="50dp"
             android:text="..."
             android:id="@+id/button"
-            android:onClick="filterConfirmClick"
             android:textSize="20dp"
             android:textStyle="bold|italic"
             android:nestedScrollingEnabled="true"
@@ -26,12 +26,14 @@
 
         <TextClock
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textClock"
-            android:textIsSelectable="false"
-            android:textSize="25sp"
-            android:layout_gravity="center_vertical"
-            android:enabled="true" />
+            android:layout_height="match_parent"
+            android:id="@+id/textClock3"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:format12Hour="EEEE, MMMM dd. h:mm a"/>
 
     </LinearLayout>
 
@@ -41,77 +43,72 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal" >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Refresh Status"
-                android:onClick="refreshButtonPress"
-                android:id="@+id/button4"
-                android:layout_marginRight="10dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Clear Preferencs"
-                android:onClick="clearPreferencesButtonPress"
-                android:id="@+id/button5"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NSTS Notification Service"
+            android:id="@+id/textView17"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Updates"
+        android:id="@+id/textView18"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_margin="10dp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="316dp"
         android:id="@+id/scrollView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:layout_marginBottom="20dp"
-        android:scrollIndicators="start|end|right">
+        android:layout_weight="0.80">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NSTS Notification Service"
-                android:id="@+id/textView19"
-                android:gravity="center_horizontal"
-                android:textColor="#ffffff"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recent Updates"
-                android:id="@+id/textView18"
-                android:gravity="center_horizontal"
-                android:textColor="#ffffff"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Notifications Go Here :)"
-                android:id="@+id/notification_view"
-                android:textColor="#ffffff"
-                android:layout_weight="7.14" />
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Medium Text"
+            android:id="@+id/notification_view"
+            android:textColor="#000000" />
     </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh Status"
+            android:onClick="refreshButtonPress"
+            android:id="@+id/button2"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear Preferencs"
+            android:onClick="clearPreferencesButtonPress"
+            android:id="@+id/button3"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
 
 </LinearLayout>

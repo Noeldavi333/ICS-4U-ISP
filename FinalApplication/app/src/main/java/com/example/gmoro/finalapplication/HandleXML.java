@@ -166,7 +166,36 @@ public class HandleXML extends AsyncTask<String, String, String> {
 
                         relevant = false;
 
+                    }else if((title.contains("General"))){
+
+                        output += (title );
+                        output +=("\n" + date );
+                        output +=("\n" + description );
+                        output +=("\n");
+                        output +=("\n" + "BreakLineHere");
+
+                        relevant = false;
+
+                    }else if ((title.contains("Closure"))){
+                        output += (title );
+                        output +=("\n" + date );
+                        output +=("\n" + description );
+                        output +=("\n");
+                        output +=("\n" + "BreakLineHere");
+
+                        relevant = false;
+
+                    }else if (description.contains("Closurer")){
+                        output += (title );
+                        output +=("\n" + date );
+                        output +=("\n" + description );
+                        output +=("\n");
+                        output +=("\n" + "BreakLineHere");
+
+                        relevant = false;
+
                     }
+
 
 
                 }
