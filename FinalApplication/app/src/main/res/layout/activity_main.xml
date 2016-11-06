@@ -26,14 +26,14 @@
 
         <TextClock
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/textClock3"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="20dp"
             android:gravity="center_vertical"
             android:layout_margin="10dp"
-            android:format12Hour="EEEE, MMMM dd. h:mm a"/>
+            android:format12Hour="E, MMMM dd. h:mm a"/>
 
     </LinearLayout>
 
@@ -44,7 +44,7 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="NSTS Notification Service"
             android:id="@+id/textView17"
@@ -67,17 +67,17 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="316dp"
+        android:layout_height="420sp"
         android:id="@+id/scrollView"
         android:background="@android:drawable/alert_light_frame"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.80">
+        android:layout_weight="0.55">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
